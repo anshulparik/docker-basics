@@ -1,0 +1,73 @@
+=> Virtual Machine:
+
+
+Applications
+
+Windows OS
+
+Hardware => CPU  +  RAM  +  Storage
+
+NOTE: If we want to run Linux on the system, we will be requiring another system but with virtualization
+- No separate hardware needed.
+
+Linux OS
+
+Virtualization (Type 2 Hypervisor)
+
+Windows OS
+
+Hardware => CPU  +  RAM  +  Storage
+
+- We can achieve this using Hypervisor.
+- Hypervisor is a technology that allows hosting multiple virtual computers on a physical computer on top 
+  of the we already have on our system.
+- Hypervisor example: Virtual box from Oracle.  
+- Virtual box takes hardware resources from Host OS.
+- Creates virtual CPU, virtual RAM, virtual Storage for each virtual machine.
+- We can only give access to hardware resources that are actually on the system.
+- Virtual machines are completely isolated.
+- If something breaks in VM, it doesn't affect the host machine.
+- This Hypervisor is called Type 2 Hypervisor (Hosted Hypervisor).
+- These are majorly used for personal computers.
+
+=> Usecases of Type 2 Hypervisor:
+- Used in personal computers.
+- Used for learning activites.
+- Used to test application on multiple platforms.
+
+
+=> Type 1 Hypervisor:
+- These are majorly used for large servers.
+- This Hypervisor is directly installed on top of hardware.
+- Also called Bare Metal Hypervisor.
+- Example: vmware ESXi, Microsoft Hyper-v
+
+
+
+Linux OS
+
+Virtualization (Type 1 Hypervisor)
+
+Hardware => CPU  +  RAM  +  Storage
+
+
+=> Usecases of Type 1 Hypervisor:
+- Used in large companies.
+- Big cloud companies runs their infrastructure on this. 
+
+
+=> Benefits of Virtualization:
+- Efficient usage of hardware resources.
+  - Use all the resources of the performant big server.
+  - Users can choose any resource combinations.
+- Abstraction of the OS from the hardware.  
+  - Without virtualization:
+    - OS is tightly coupled to the hardware.
+    - If hardware failed and couldn't be repaired then all the data will be gone.
+  
+  - With virtualization:
+    - OS as a portable file (VM Image).
+    - We can have backups of our entire OS (OS Snapshots).
+    - Secure very easily. If something happen to our existing VM we can run backup snapshot
+      on another VM.
+    - Portable  

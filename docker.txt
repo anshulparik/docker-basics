@@ -1,0 +1,129 @@
+=> Docker:
+- It is a virtualization software, it makes developing and deploying applications much easier.
+- Docker does that by packaging an application (into container) with all the necessary dependencies, 
+  configuration system tool and runtime.
+
+
+=> Container:
+- A standardized unit, that has everything the application needs to run.
+
+
+=> Things before docker:
+- Each developer needs to install and configure all services directly on their OS on their local
+  machine.
+
+  - Installation process is different for each OS environment.
+  - Many steps of installation where something can go wrong.
+  - There might be version mis-match.
+  - If our application uses 10 services, each developer needs to install these 10 services.
+
+=> What dockers solves?  
+- With containers, we don't need to install any of the services directly on to our system.
+- With docker, our services is packaged into one isolated environment.
+- Services are packaged with all dependencies and configuration inside into a container.
+- We can run the service using one single docker command, which fetches the container package and 
+  runs on our system.
+- Command will be same for all the OS system and for all the services. 
+
+
+NOTE: 
+- Docker standardizes the process of running any service on any local dev environment.
+- With docker it is easy to run different versions of same application without any conflicts.
+
+
+
+
+=> Deployment before containers:
+- Development team will produce application artifact together with set of instructions on (How to 
+  install and configure application on the server?) with DB service (How to configure and set 
+  it up on the server).
+- Development team will hand-over these application artifact and instructions to Devops team.
+- Devops team handles installing and configuring application and its dependencies.
+
+=> Negatives of this approach:
+- Installations and configurations are done directly on the server's OS.
+- Dependency versions conflicts may arise.
+  - Two services are dependening on the same library but with different versions.
+- Miscommunication between Development and Devops team may arise.
+  - Human errors can happen.
+  - Additional back and forth communcation may require.
+
+
+
+=> Deployment with containers:  
+- Development team create docker artifact that includes everything that application needs.
+  - including source code, application and dependencies.
+- No configurations needed on the server (except docker runtime).
+- Less room for errors.
+- Devops team needs to install the docker runtime on the server.
+- Devops team needs to run the docker command to fetch and run the docker artifacts.
+
+
+
+
+=> Virtual Machine vs Docker:
+
+- 2 main OS components:
+  - OS Kernel -> OS Application Layer
+- OS Kernel 
+  - It is the core of every operating system.
+  - OS Kernel interacts between hardware and software components.
+  - It communicates with hardware components (CPU, Memory, Storage etc.)
+- OS Application Layer
+  - It runs the applications.
+  - It runs on the top of OS Kernel.  
+
+NOTE: Docker and VM are both virtualization tools, what part of the OS do they virtualize.
+
+- Docker virtualizes the OS Application Layer.
+  - When we run docker container, it contains the OS Application Layer.
+  - Services and applications are installed on top of this layer.
+  - It uses the Kernel of the host (doesn't have its own Kernel).
+
+- VM virtualizes the complete OS.
+  - VM has its own OS Application Layer and OS Kernel.
+  - It doesn't uses host's kernel, it boots up its own Kernel.
+
+
+
+App A   App B                                          App A              App B
+
+   Docker                                              Guest OS           Guest OS
+
+   Host OS                                                      Host OS                            
+
+Physical Machine                                             Physical Machine
+
+
+    DOCKER                                                          VM
+
+
+
+=> DOCKER vs VM
+- Size of the docker images are much smaller (Couple of MB).
+- Size of the VM is much larger (Couple of GB).
+
+- Containers takes seconds to start.
+- VMs takes minutes to start.
+
+- Compatible only with Linux distros. 
+- VMs are compatible with all OS.
+
+NOTE: 
+  - Suppose we have Windows OS with its Kernel and Application Layer.
+  - We want to run linux based docker image directly on windows host, which is not possible.
+  - Linux based docker image cannot use Windows Kernel. It would require Linux Kernel.
+
+  - Most containers are Linux based.
+  - Docker was originally built for Linux.
+  - But later docker developed Docker Desktop for Windows and MAC OS. It allows us to run 
+    Linux containers on Windows and MAC OS.   
+  - Docker Desktop uses a Hypervisor Layer with a lightweight Linux distribution on top of it
+    to provide the needed Linux Kernel and by this way we can run Linux images on Windows and MAC OS.  
+
+
+
+
+
+
+

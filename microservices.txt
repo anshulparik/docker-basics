@@ -1,0 +1,131 @@
+=> Monolithic:
+- Monolythic architecture was standard, before microservices.
+- All components are a part of a single unit.
+- Everything developed, deployed and scaled as 1 unit.
+- App must be written with 1 tech-stack.
+- Team's need to be careful to not affect each other's work.
+- 1 single artifact, so you must redeploy the entire application on each update.
+
+As app grew in size and complexity, it comes with different challenges.
+
+=> Challenges:
+- Co-ordination between teams becomes more difficult because:
+   - Application is too large and complex.
+   - Parts are more tangled into each other.
+- You can only scale the entire app, instead of a specific service.
+   - This results in higher infra-structure cost and less flexibilty.
+- Suppose two features example:   
+   - Payment and Notification features uses same module, but of different versions 
+   v1.7 and v1.9, so we can use either one feature for this module.
+- Release process takes time.
+   - On every change entire application needs to be tested, built and deployed.
+- Bug in any module can bring down the entire application.         
+
+
+To overcome these issues, we use microservices architecture.
+
+
+=> Microservices:
+- In microservices, we break down application into smaller independent services.
+- All these services combines and meakes up an entire application.
+
+We have some question while dividing our application into smaller services:
+
+=> Questions:
+- How to break down the application?
+   - Break down the application into components
+   - Split based on business functionalities not technical functionalities.
+      - For an online store:
+        - products
+        - shopping-carts
+        - user 
+        - products
+
+
+- What code goes where?
+- How many microservices do we create?
+- How big/small they should be?
+   - 1 service for 1 specific job.
+   - Self contained and independent from each other.
+   - Developed, deployed and scaled independently.
+   - App should be loosely coupled. (change in one service won't affect any other service)
+   - Services have their own independent versions which are not dependent.
+
+
+- How do they communicate?
+   - Communication via API calls (synchronous (waits for the response))
+      - Each service have their own end points, and we can hit endpoints for communication.
+   - Communication via message broker (asynchronous)
+      - Service sends a message to intermediate message service (RabbitMQ) then it forwards our message
+        to respective service.
+   - Common distribution patterns 
+      - Publish/Subscribe and Point-to-point messaging  
+   - Communication via Service mesh with Sidecar Pattern
+      - Helper servive which takes over the complete communication logic.
+
+
+=> Challenges of Microservices:
+- Added complexity just by microservices application is a distributed system.
+- Configuring the communication between different services.
+- 1 service can be down which can give unexpected results.
+- More difficult to monitor, with multiple instances of microservices, that which microservice is down.
+
+
+We use CI/CD pipelines for microservices to deploy the application.
+
+
+=> Git for microservices:
+- Monorepo (Single git repo for all services)
+  - use folder for each service in a single repo.
+  - makes the code management and deployment easier.
+  - clone and work with 1 repo.
+  - changes can be tracked, tested and released together.
+  - share code configurations.
+
+  Challenges:
+  - No tight coupling.
+  - Easier to break this criteria.
+  - Big source code, means git interactions becomes slow.
+  - Additional logic necessary to make sure only service is built and 
+    deployed which has code changes. (for managing CI/CD pipelines).
+
+- Polyrepo (Multiple git repo for different services)
+  - code is completely isolated.
+  - clone and work on them separately.
+  - Use "Groups" feature of gitlab in order to group all the code for 
+    microservices which belong to the same application.
+  - Own pipeline for each repository.
+
+  Challenges:
+  - It makes harder on working projects.
+  - Switching b/w services can be tedious.
+  - Searching, testing and debugging is more difficult.
+  - Sharing resources becomes more difficult.  
+
+
+
+===============================================================================================
+
+
+=> Docker vs Microservices:
+ - Docker and microservices are two different concepts that are often used together. Docker is a 
+   containerization platform that allows developers to package their applications into lightweight, 
+   portable containers. Microservices is a software development architecture that breaks down an 
+   application into a suite of small, independent services.
+ - Docker containers are isolated from each other and from the underlying infrastructure, 
+   which makes them ideal for running microservices. Each microservice can be packaged into its own container, 
+   which can then be deployed and scaled independently. This makes it easy to develop, test, and deploy 
+   microservices applications.
+ - Docker and microservices are both powerful tools that can help developers to build and deploy scalable, 
+   reliable applications. However, it is important to understand the difference between the two concepts so 
+   that you can use them effectively.
+
+
+
+
+
+
+
+
+
+
